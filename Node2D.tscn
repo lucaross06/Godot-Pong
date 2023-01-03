@@ -1,0 +1,74 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Paddle2Area2D.gd" type="Script" id=1]
+[ext_resource path="res://separator.png" type="Texture" id=2]
+[ext_resource path="res://paddle.png" type="Texture" id=3]
+[ext_resource path="res://ball.png" type="Texture" id=4]
+[ext_resource path="res://PaddleArea2D.gd" type="Script" id=5]
+[ext_resource path="res://BallArea2D.gd" type="Script" id=6]
+
+[sub_resource type="GDScript" id=4]
+script/source = "extends Node2D
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+"
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 4, 16 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 4, 16 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 4, 4 )
+
+[node name="Node2D" type="Node2D"]
+position = Vector2( -61, 0 )
+script = SubResource( 4 )
+
+[node name="Separator" type="Sprite" parent="."]
+position = Vector2( 552, 299 )
+texture = ExtResource( 2 )
+
+[node name="PaddleArea2D" type="Area2D" parent="."]
+position = Vector2( 209, 287 )
+script = ExtResource( 5 )
+
+[node name="Paddle" type="Sprite" parent="PaddleArea2D"]
+texture = ExtResource( 3 )
+
+[node name="PaddleCollision" type="CollisionShape2D" parent="PaddleArea2D"]
+shape = SubResource( 1 )
+
+[node name="Paddle2Area2D" type="Area2D" parent="."]
+position = Vector2( 971, 321 )
+script = ExtResource( 1 )
+
+[node name="Paddle2" type="Sprite" parent="Paddle2Area2D"]
+texture = ExtResource( 3 )
+
+[node name="Paddle2Collision" type="CollisionShape2D" parent="Paddle2Area2D"]
+shape = SubResource( 2 )
+
+[node name="BallArea2D" type="Area2D" parent="."]
+position = Vector2( 533, 297 )
+script = ExtResource( 6 )
+
+[node name="Ball" type="Sprite" parent="BallArea2D"]
+texture = ExtResource( 4 )
+
+[node name="BallCollision" type="CollisionShape2D" parent="BallArea2D"]
+shape = SubResource( 3 )
